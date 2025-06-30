@@ -22,3 +22,10 @@ resource "azurerm_virtual_network" "examplevnet" {
   resource_group_name = azurerm_resource_group.examplerg.name
   address_space       = ["10.0.0.0/16"]
 }
+
+resource "azurerm_subnet" "examplesubnet1" {
+  name                 = "mmmsubnet1"
+  resource_group_name  = azurerm_resource_group.examplerg.name
+  virtual_network_name = azurerm_virtual_network.examplevnet.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
