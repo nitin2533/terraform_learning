@@ -1,3 +1,5 @@
+#This code is used for creating the VM in Azure cloud
+
 terraform {
   required_providers {
     azurerm = {
