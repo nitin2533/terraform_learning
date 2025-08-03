@@ -12,7 +12,7 @@ provider "azurerm" {
   features {
     
   }
-  subscription_id = "00eee853-16f9-4fd6-bf25-8aba491040dd"
+  subscription_id = "ae94c894-df83-4618-a58f-e8cf08dcd701"
 }
 resource "azurerm_resource_group" "examplerg" {
   name     = "mmmrg"
