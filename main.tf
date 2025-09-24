@@ -12,28 +12,28 @@ provider "azurerm" {
   features {
     
   }
-  subscription_id = "ae94c894-df83-4618-a58f-e8cf08dcd701"
+  subscription_id = "b7341b17-2d83-4170-ba3e-275f8b52b7d2"
 }
 resource "azurerm_resource_group" "examplerg" {
-  name     = "mmmrg"
-  location = "West Europe"
+  name     = "rg-minikube"
+  location = "central india"
 }
 resource "azurerm_virtual_network" "examplevnet" {
-  name                = "mmmvnet"
+  name                = "vnet-minikube"
   location            = azurerm_resource_group.examplerg.location
   resource_group_name = azurerm_resource_group.examplerg.name
   address_space       = ["10.0.0.0/16"]
 }
 
 resource "azurerm_subnet" "examplesubnet1" {
-  name                 = "mmmsubnet1"
+  name                 = "subnet-minikube"
   resource_group_name  = azurerm_resource_group.examplerg.name
   virtual_network_name = azurerm_virtual_network.examplevnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_subnet" "examplesubnet2" {
-  name                 = "mmmsubnet2"
+  name                 = "subnet2-minikube"
   resource_group_name  = azurerm_resource_group.examplerg.name
   virtual_network_name = azurerm_virtual_network.examplevnet.name
   address_prefixes     = ["10.0.2.0/24"]
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "examplesubnet2" {
 
 
 resource "azurerm_network_interface" "examplenic1" {
-  name                = "mmmnic1"
+  name                = "nic-minikube"
   location            = azurerm_resource_group.examplerg.location
   resource_group_name = azurerm_resource_group.examplerg.name
 
@@ -53,7 +53,7 @@ resource "azurerm_network_interface" "examplenic1" {
 }
 
 resource "azurerm_network_interface" "examplenic2" {
-  name                = "mmmnic2"
+  name                = "nic2-minikube"
   location            = azurerm_resource_group.examplerg.location
   resource_group_name = azurerm_resource_group.examplerg.name
 
@@ -65,12 +65,12 @@ resource "azurerm_network_interface" "examplenic2" {
 }
 
 resource "azurerm_linux_virtual_machine" "examplevm1" {
-  name                = "mmmvm1"
+  name                = "minikubevm"
   resource_group_name = azurerm_resource_group.examplerg.name
   location            = azurerm_resource_group.examplerg.location
   size                = "Standard_F2"
-  admin_username      = "admin_user"
-  admin_password      = "admin@123"
+  admin_username      = "minikube"
+  admin_password      = "minikube@123"
   disable_password_authentication = "false"
   network_interface_ids = [
     azurerm_network_interface.examplenic1.id,
@@ -91,12 +91,12 @@ resource "azurerm_linux_virtual_machine" "examplevm1" {
 }
 
 resource "azurerm_linux_virtual_machine" "examplevm2" {
-  name                = "mmmvm2"
+  name                = "minikubevm2"
   resource_group_name = azurerm_resource_group.examplerg.name
   location            = azurerm_resource_group.examplerg.location
   size                = "Standard_F2"
-  admin_username      = "admin_user"
-  admin_password      = "admin@123"
+  admin_username      = "minikube"
+  admin_password      = "minikube@123"
   disable_password_authentication = "false"
   network_interface_ids = [
     azurerm_network_interface.examplenic2.id,
